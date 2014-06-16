@@ -30,6 +30,6 @@
                 <div class="row">
                     <div class="col-md-12">Footer</div>
                 </div>            
-	    <r:layoutResources />
+	        <r:layoutResources />
 	</body>
 </html>

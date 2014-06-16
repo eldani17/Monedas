@@ -1,5 +1,5 @@
-package app.controller
-import app.Grupo
+package Monedas.controller
+import Monedas.Grupo
 
 class GrupoController
 {
