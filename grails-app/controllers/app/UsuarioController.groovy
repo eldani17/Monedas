@@ -15,22 +15,40 @@ class UsuarioController {
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
     }
     
+    
+    
+    
     //De la vista llamo a esta accion, que verifica el logueo
-    def login ={
-        def UsuarioActivo = User.findWhere (nombre:params['nombre'],
-        password:parms['password'])
-        session.user= UsuarioActivo // Obtengo la session del usuario registrado o no !!
-        
-        //Compruebo la busqueda por usuario y contraseña
-        if(user) // Si tengo session
-        {
-           // lo direcciono a la pagina de monedas
-           flash.message="Bienvenido al sistema "
-        } else
-        {
-            redirect (action:'index') // vuelvo al default
+   def login(){
+        def usuario = Usuario.findByUsuarioAndpassword(params.usuario,params.password)
+            //No existe el Usuario
+            if (!usuario) {
+                flash.message = "El usuario ${params.usuario} no existe "
+                //Vuelvo al Login
+                render(view:'login')
+                return
+            }
+            else {
+                session.user = usuario // Cargo la session
+                //Verifico si es un administrador
+                //Si lo es, voy a la ventana del administrador
+                if(usuario.isAdmin==true){
+                    redirect(view:'administrador')                    
+                } //Es un Usuario normal
+                else{
+                    redirect(view:'show', model:[moneda:Moneda]) // voy
+                }                
+            }    
         }
-    }
+    
+    // Control para deslogueo
+    def logout() {
+                    if (session.user){
+                        session.user = null
+                        render(view:'login')
+                    }
+                }
+
      
     def show(Usuario usuarioInstance) {
         respond usuarioInstance
