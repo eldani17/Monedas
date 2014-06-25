@@ -33,7 +33,7 @@ class UsuarioController {
                 //Verifico si es un administrador
                 //Si lo es, voy a la ventana del administrador
                 if(usuario.isAdmin==true){
-                    render(view:'administrador')                    
+                    redirect(view:'administrador')                    
                 } //Es un Usuario normal
                 else{
                     redirect(view:'show', model:[moneda:Moneda]) // voy
