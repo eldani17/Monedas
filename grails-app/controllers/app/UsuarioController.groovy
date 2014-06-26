@@ -20,7 +20,7 @@ class UsuarioController {
     
     //De la vista llamo a esta accion, que verifica el logueo
    def login(){
-        def usuario = Usuario.findByUsuarioAndpassword(params.usuario,params.password)
+        def usuario = Usuario.findByEmailAndPassword(params.email,params.password)
             //No existe el Usuario
             if (!usuario) {
                 flash.message = "El usuario ${params.usuario} no existe "

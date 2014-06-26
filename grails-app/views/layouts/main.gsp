@@ -25,27 +25,6 @@
                 <link rel="stylesheet" href="${resource(dir: 'css', file: 'signin.css')}">
 	</head>
 	<body>
-            <!--<div class="row">
-                <div class="col-md-12">Header</div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">Menu</div>
-                <div class="col-md-9"><g:layoutBody/></div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">Footer</div>                    
-            </div>
-            <r:layoutResources />-->
-            <div class="container">
-              <form class="form-signin" role="form" action ="usuario/index">
-                <h4 class="form-signin-heading">Inicia sesión para acceder a Monedas</h4>
-                <input name="email" type="email" class="form-control" placeholder="Correo Electronico" required autofocus>
-                <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
-                <label class="checkbox">
-                  <input type="checkbox" value="remember-me"> No cerrar sesión
-                </label>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
-              <form>
-            </div>
+          <g:layoutBody/>
 	</body>
 </html>
