@@ -18,27 +18,32 @@ class UsuarioController {
     //De la vista llamo a esta accion, que verifica el logueo
    def login(){
        
-       //redirect action: "edit"
-        def usuario = Usuario.findByEmailAndPassword(params.email,params.password)
-            if (!usuario) {
-                flash.message = "El usuario ${params.usuario} no existe "
-                flash.message = "llgamos aca"
-                //Vuelvo al Login
-                redirect(view:'show')
-                return
+       // def email=Usuario.findByEmail(params.email)
+       // def password=Usuario.findByPassword(params.password)
+        def usuario= Usuario.findByPasswordAndEmail(params.email,params.password)        
+        //no existe usuario, puede ser xq no exista o este equivocado en el login
+        
+        if(!usuario){
+            flash.message="Usuario no Correcto"
+            redirect(action: "index")
+        }else{
+            //Tengo que crear un usuario para comprobar esto
+            //creeria que debe funcionar asi
+            if(usuario.Grupo.IsAdmin==True){
+            //Es administrador
+             redirect(action: "show")
+            flash.message="Tengo Usuario Administrador"
+            //Dani Aca debemos crear el Layout para el Administrador
+            }else{
+                //No es administrador
+                //Chicos deben fijarse donde envio la vista
+                redirect(controller:"Moneda",action: "show")
             }
-            else {
-                session.user = usuario // Cargo la session
-                //Verifico si es un administrador
-                //Si lo es, voy a la ventana del administrador
-                if(usuario.isAdmin==true){
-                    redirect(view:'administrador')                    
-                } //Es un Usuario normal
-                else{
-                    redirect(view:'show', model:[moneda:Moneda]) // voy
-                }                
-            }
+            
         }
+        
+   }    
+        
     
     // Control para deslogueo
     def logout() {
