@@ -15,17 +15,16 @@ class UsuarioController {
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
     }
     
-    
-    
-    
     //De la vista llamo a esta accion, que verifica el logueo
    def login(){
+       
+       //redirect action: "edit"
         def usuario = Usuario.findByEmailAndPassword(params.email,params.password)
-            //No existe el Usuario
             if (!usuario) {
                 flash.message = "El usuario ${params.usuario} no existe "
+                flash.message = "llgamos aca"
                 //Vuelvo al Login
-                render(view:'login')
+                redirect(view:'show')
                 return
             }
             else {
@@ -38,7 +37,7 @@ class UsuarioController {
                 else{
                     redirect(view:'show', model:[moneda:Moneda]) // voy
                 }                
-            }    
+            }
         }
     
     // Control para deslogueo
