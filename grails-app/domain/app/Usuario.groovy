@@ -12,7 +12,7 @@ class Usuario
     {
         nombre(blank:false)
         apellido(blank:false)
-        password(blank:false, password:true)
+        password(blank:false,password:true)
         dni(blank:false, matches: "[/d/d./d/d/d./d/d/d]") //corregir
         email(blank:false, email:true)
     }

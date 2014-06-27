@@ -17,29 +17,37 @@ class UsuarioController {
     
     //De la vista llamo a esta accion, que verifica el logueo
     def login(){
-        def usuario= Usuario.findByPasswordAndEmail(params.email,params.password)        
+      //  def email= Usuario.findByEmail(params.email)   
+      //  def password= Usuario.findByPassword(params.password)   
+         def u=Usuario.findWhere(email:params.email, password:params.password)
         //Si no existe el usuario
-        if(!usuario){
-            // para el caso de que el login sea incorrecto. se qda en el mismo index, deberiamos agregar un cartel
-            // mostrando el error
-            //redirect(uri:"/")
-            
-            // esto es para poder crear el usuario admin por unica vez.
-            redirect(uri:"/usuario/create")
+        if(!u){
+              redirect(action:'index')
         }
         else{
+                redirect (controller:'Usuario',action:'create')
+            }
+            
+            /*
+            render(view:'administrador')
             //creeria que debe funcionar asi
-            if(usuario.Grupo.IsAdmin==True){
-            //Aca deberiamos redireccionar a /usuario/administrador --> es el htlm q debe contener todos los link para poder
-            // crear las cosas
-            redirect(action: "show")
+           if(usuario.Grupo.IsAdmin==True)
+           {
+            //Enviar al Layout Administrador
+            // redirect(action: "administrador")
+            render(view:'administrador')
             flash.message="Tengo Usuario Administrador"
             //Dani Aca debemos crear el Layout para el Administrador
+            
             }else{
                 //Chicos deben fijarse donde envio la vista
                 // aca hay q enviar a la vista usuario
                 redirect(controller:"Moneda",action: "show")
-    // Control para deslogueo
+                  // Control para deslogueo
+            }*/
+        
+       }
+    
     def logout() {
                     if (session.user){
                         session.user = null
@@ -133,4 +141,4 @@ class UsuarioController {
             '*'{ render status: NOT_FOUND }
         }
     }
-}
+            }

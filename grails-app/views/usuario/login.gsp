@@ -12,6 +12,11 @@
         <title>Sample title</title>
     </head>
     <body>
-        asdas
+        
+        <p>
+            
+        <br>Pass: ${password}
+        <br>Email: ${email}</p>
+        
     </body>
 </html>
