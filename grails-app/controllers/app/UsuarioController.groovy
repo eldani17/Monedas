@@ -16,32 +16,29 @@ class UsuarioController {
     }
     
     //De la vista llamo a esta accion, que verifica el logueo
-   def login(){
-       
-       // def email=Usuario.findByEmail(params.email)
-       // def password=Usuario.findByPassword(params.password)
+    def login(){
         def usuario= Usuario.findByPasswordAndEmail(params.email,params.password)        
-        //no existe usuario, puede ser xq no exista o este equivocado en el login
-        
+        //Si no existe el usuario
         if(!usuario){
-            flash.message="Usuario no Correcto"
-            redirect(action: "index")
-        }else{
-            //Tengo que crear un usuario para comprobar esto
+            // para el caso de que el login sea incorrecto. se qda en el mismo index, deberiamos agregar un cartel
+            // mostrando el error
+            //redirect(uri:"/")
+            
+            // esto es para poder crear el usuario admin por unica vez.
+            redirect(uri:"/usuario/create")
+        }
+        else{
             //creeria que debe funcionar asi
             if(usuario.Grupo.IsAdmin==True){
-            //Es administrador
-             redirect(action: "show")
+            //Aca deberiamos redireccionar a /usuario/administrador --> es el htlm q debe contener todos los link para poder
+            // crear las cosas
+            redirect(action: "show")
             flash.message="Tengo Usuario Administrador"
             //Dani Aca debemos crear el Layout para el Administrador
             }else{
-                //No es administrador
                 //Chicos deben fijarse donde envio la vista
+                // aca hay q enviar a la vista usuario
                 redirect(controller:"Moneda",action: "show")
-            }            
-        }
-        
-   }       
     // Control para deslogueo
     def logout() {
                     if (session.user){
