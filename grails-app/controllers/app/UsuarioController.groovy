@@ -38,13 +38,10 @@ class UsuarioController {
                 //No es administrador
                 //Chicos deben fijarse donde envio la vista
                 redirect(controller:"Moneda",action: "show")
-            }
-            
+            }            
         }
         
-   }    
-        
-    
+   }       
     // Control para deslogueo
     def logout() {
                     if (session.user){
@@ -52,8 +49,7 @@ class UsuarioController {
                         render(view:'login')
                     }
                 }
-
-     
+                
     def show(Usuario usuarioInstance) {
         respond usuarioInstance
     }
