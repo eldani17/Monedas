@@ -1,7 +1,4 @@
 package app
-
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -22,10 +19,10 @@ class UsuarioController {
          def u=Usuario.findWhere(email:params.email, password:params.password)
         //Si no existe el usuario
         if(!u){
-              redirect(action:'index')
+              render(view:'administrador')
         }
         else{
-                redirect (controller:'Usuario',action:'create')
+                render (view:'show')
             }
             
             /*
