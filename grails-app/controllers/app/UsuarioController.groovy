@@ -9,7 +9,8 @@ import grails.transaction.Transactional
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
+    def layout="usuario"
+    
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
@@ -21,12 +22,24 @@ class UsuarioController {
       //  def password= Usuario.findByPassword(params.password)   
          def u=Usuario.findWhere(email:params.email, password:params.password)
         //Si no existe el usuario
-        if(!u){
-              redirect(action:'index')
+        if(!u)
+        {
+            redirect(uri:'/')
         }
-        else{
-                redirect (controller:'Usuario',action:'create')
+        else
+        {
+            if (u.password==params.password)
+            {
+                
+                u.grupos.each{if (it.isAdmin){layout="administrador"}}
+                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])
             }
+            else
+            {
+                redirect(uri:'/')
+            }
+                
+        }
             
             /*
             render(view:'administrador')
@@ -50,10 +63,10 @@ class UsuarioController {
     
     def logout() {
                     if (session.user){
-                        session.user = null
-                        render(view:'login')
-                    }
-                }
+            session.user = null
+            render(view:'login')
+        }
+    }
                 
     def show(Usuario usuarioInstance) {
         respond usuarioInstance
