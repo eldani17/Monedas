@@ -14,17 +14,21 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<!--<link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">-->
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
-		<g:layoutHead/>
-		<g:javascript library="application"/>	
-                <r:require modules="bootstrap"/>
-		<r:layoutResources /> 
+	        <r:require modules="bootstrap"/>                          
+        <r:layoutResources />                                
+	             
+
+                <g:layoutHead/>			
+                		 
                 <!-- Bootstrap core CSS -->
                 <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
                 <!-- Custom styles for this template -->
-                <link rel="stylesheet" href="${resource(dir: 'css', file: 'signin.css')}">
+                <link rel="stylesheet" href="${resource(dir: 'css', file: 'signin.css')}">                
+                <g:javascript library="application"/>
 	</head>
 	<body>
           <g:layoutBody/>
+
 	</body>
 </html>

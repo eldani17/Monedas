@@ -8,7 +8,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sample title</title>
+    <title>Usuario</title>
+    <r:layoutResources />
   </head>
   <body>
     <div class="row">
