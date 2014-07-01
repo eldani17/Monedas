@@ -1,3 +1,13 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 29, 2014, 12:19:36 PM
+    Author     : SANDOVAL
+*/
+
 
 /* Eric Meyer's CSS Reset */
 html, body, div, span, applet, object, iframe,
@@ -67,8 +77,9 @@ body {
 /* Header
 -----------------------------------------------------------------------------*/
 .header {
-	height: 150px;
-	background: #FFE680;
+	height: 50px;
+//	background: #FFE680;
+        text-align: center;
 }
 
 
@@ -89,8 +100,19 @@ body {
 	float: left;
 	overflow: hidden;
 }
+
+.contenedor{
+    width:1200px;
+    height:900px;
+    border: 1px solid blue;
+}
+
+.footerUniversidad{
+    position: relative;
+    
+}
 .content {
-	padding: 0 0 0 270px;
+	padding: 0 0 0 30px;
 }
 
 
@@ -98,19 +120,68 @@ body {
 -----------------------------------------------------------------------------*/
 .left-sidebar {
 	float: left;
-	width: 250px;
+	width: 2800px;
 	margin-left: -100%;
 	position: relative;
-	background: #B5E3FF;
+	//background: #B5E3FF;
+        background: grey;
 }
 
 
 /* Footer
 -----------------------------------------------------------------------------*/
 .footer {
-	margin: -100px auto 0;
+	/*margin: -100px auto 0;
 	min-width: 1000px;
-	height: 100px;
+	height: 50px;
 	background: #BFF08E;
 	position: relative;
+        margin-top: 100%;*/
+        position: relative; 
+        margin-top: -50px; /* altura en px del footer con valor negativo */ 
+        height: 40px; /* Altura del Footer en px*/ 
+        clear: both; 
+        background: #286af0; 
+        text-align: center; 
+        color: #FFFFFF; 
 }
+
+
+   
+/* Sticky Footer Solution by Steve Hatcher
+http://stever.ca
+http://www.cssstickyfooter.com*/
+*{
+margin: 0;
+padding: 0;
+}/*Quitamos unas propiedades que por defecto traen los navegadores y las ponemos en “0”*/
+
+html, body {
+height: 100%;
+}
+#wrap {
+min-height: 100%;
+}
+#main {
+overflow: auto;
+padding-bottom: 50px;
+text-align: center;
+}/* Altura en px del footer */
+#footer {
+    position: relative;
+    margin-top: -50px; /* altura en px del footer con valor negativo */
+    height: 50px; /* Altura del Footer en px*/
+    clear: both;
+    background: #286af0;
+    text-align: center;
+    color: #FFFFFF;
+}
+/*Opera Fix*/
+body:before {
+    content: "";
+    height: 100%;
+    float: left;
+    width: 0;
+    margin-top: -32767px;/* Efecto Negativo para OPERA*/
+}
+
