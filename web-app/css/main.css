@@ -71,12 +71,22 @@ a:link, a:visited, a:hover {
 a:hover, a:active {
 	outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
 }
+
+.centrarCuerpo{
+    border:1px solid red;
+    margin-left: auto;
+    margin-right: auto;
+}
 .table{
     border:1px solid blue;
     margin-left: auto;
     margin-right: auto;
 }
 
+.encabezad{
+    border:1px solid blue;
+    
+}
 h1 {
 	color: #48802c;
 	font-weight: normal;

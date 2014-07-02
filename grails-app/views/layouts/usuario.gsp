@@ -16,7 +16,11 @@
       <div class="col-md-12">Header</div>
       </div>
       <div class="row">
-        <div class="col-md-3">Menu</div>
+        <div class="col-md-3">Menu
+        
+        
+        
+        </div>
         <div class="col-md-9"><g:layoutBody/></div>
       </div>
       <div class="row">

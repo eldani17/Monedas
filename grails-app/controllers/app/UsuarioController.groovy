@@ -17,7 +17,7 @@ class UsuarioController {
     def login(){
       //  def email= Usuario.findByEmail(params.email)   
       //  def password= Usuario.findByPassword(params.password)   
-         def u=Usuario.findWhere(email:params.email, password:params.password)
+         def u=Usuario.findWhere(email:params.email)
         //Si no existe el usuario
         if(!u)
         {
@@ -26,12 +26,16 @@ class UsuarioController {
         else
         {
             if (u.password==params.password)
-            {           
+            {
+                //Busco en grupos si es administrador
                 u.grupos.each{if (it.isAdmin){layout="administrador"}}
+                //Dependiendo si es administrador o no, elige el layout
                 redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
+                
             }
             else
             {
+                //debo enviar mensaje diciendo que se equivoco en la contraseña
                 redirect(uri:'/')
             }           
         }        
