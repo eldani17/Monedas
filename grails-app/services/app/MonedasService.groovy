@@ -7,27 +7,27 @@ import groovy.json.*
 class MonedasService 
 {
     URL url = new URL("http://openexchangerates.org/api/latest.json?app_id=4d7bc29f943f4018b32c151420a88c4b&base=USD");
-    def value
-    def getcurrency(String c)
+    Map value=[:]
+    List monedas=[]
+    
+    def MonedasService
     {
-        InputStream urlStream = null;
-        try 
-        {
-            urlStream = url.openStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlStream));
-            JsonSlurper jsonSlurper = new JsonSlurper();
-            Object result = jsonSlurper.parse(reader);
-            Map jsonResult = (Map) result;
-            Map currency = (Map) jsonResult.get("rates");
-            this.value = currency[c]
-        }
-        finally 
-        {
-            if (urlStream != null)
-            {
-                urlStream.close();
-            }
-        }
-        this.value
+        InputStream urlStream = url.openStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(urlStream));
+        JsonSlurper jsonSlurper = new JsonSlurper();
+        Object result = jsonSlurper.parse(reader);
+        Map jsonResult = (Map) result;
+        value = (Map) jsonResult.get("rates");  
+        value.each () { k, v -> monedas << v } 
     }
+    
+    def getCurrency(String c)
+    {
+        this.value[c]
+    }
+    
+    def getMonedas(String[] siglas)
+    {        
+        return this.monedas.intersect(siglas)        
+    }   
 }

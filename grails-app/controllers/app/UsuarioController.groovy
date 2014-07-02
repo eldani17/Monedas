@@ -65,7 +65,11 @@ class UsuarioController {
         }
     }
                 
-    def show(Usuario usuarioInstance) {
+    def show(Usuario usuarioInstance) 
+    {
+        def model=[:]
+        model[user]=usuarioInstance
+        MonedasService.
         respond usuarioInstance
     }
 
