@@ -4,9 +4,9 @@
 <html>
     <head>
         <meta name="layout" content="main">
+        <link rel="stylesheet" type="text/css" href="/css/main.css" />
 	<g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />
-		<title><g:message code="default.list.label" args="[entityName]" /></title>
-                
+		<title><g:message code="default.list.label" args="[entityName]" /></title>                
     </head>
 	<body>
 		<a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -21,10 +21,9 @@
 	    		<g:if test="${flash.message}">
 	    			<div class="message" role="status">${flash.message}</div>
 	    		</g:if>                  
-			<table>
+			<table class="table">
 			<thead>
-					<tr>
-					
+					<tr>					
 						<g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
 					
 						<g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />

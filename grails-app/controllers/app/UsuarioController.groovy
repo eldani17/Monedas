@@ -29,7 +29,9 @@ class UsuarioController {
             {
                 
                 u.grupos.each{if (it.isAdmin){layout="administrador"}}
-                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])
+                //redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])
+                redirect(controller:"Usuario", action:"show", id: u.id,params:[id:u.id])
+                return
             }
             else
             {
@@ -70,7 +72,7 @@ class UsuarioController {
         def model=[:]
         model[user]=usuarioInstance
         MonedasService.
-        respond usuarioInstance
+        respond usuarioInstance        
     }
 
     def create() {
