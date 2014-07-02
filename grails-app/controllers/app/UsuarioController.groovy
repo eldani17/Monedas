@@ -6,8 +6,8 @@ import grails.transaction.Transactional
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def layout="usuario"
-    
+    static layout="usuario"
+      
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
@@ -26,38 +26,15 @@ class UsuarioController {
         else
         {
             if (u.password==params.password)
-            {
-                
+            {           
                 u.grupos.each{if (it.isAdmin){layout="administrador"}}
-                //redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])
-                redirect(controller:"Usuario", action:"show", id: u.id,params:[id:u.id])
-                return
+                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
             }
             else
             {
                 redirect(uri:'/')
-            }
-                
-        }
-            
-            /*
-            render(view:'administrador')
-            //creeria que debe funcionar asi
-           if(usuario.Grupo.IsAdmin==True)
-           {
-            //Enviar al Layout Administrador
-            // redirect(action: "administrador")
-            render(view:'administrador')
-            flash.message="Tengo Usuario Administrador"
-            //Dani Aca debemos crear el Layout para el Administrador
-            
-            }else{
-                //Chicos deben fijarse donde envio la vista
-                // aca hay q enviar a la vista usuario
-                redirect(controller:"Moneda",action: "show")
-                  // Control para deslogueo
-            }*/
-        
+            }           
+        }        
        }
     
     def logout() {
@@ -69,14 +46,20 @@ class UsuarioController {
                 
     def show(Usuario usuarioInstance) 
     {
-        def model=[:]
-        model[user]=usuarioInstance
-        MonedasService.
+        if (usuarioInstance == null) {
+            notFound()
+            return
+        }
+        
+        //def model=[:]
+        //model[user]=usuarioInstance
+        //MonedasService.
         respond usuarioInstance        
     }
 
     def create() {
         respond new Usuario(params)
+        
     }
 
     @Transactional
@@ -90,8 +73,10 @@ class UsuarioController {
             respond usuarioInstance.errors, view:'create'
             return
         }
-
-        usuarioInstance.save flush:true
+        //Le agrego un tipo Publico    
+        def grupo= Grupo.findByNombre("publico")
+        //Agrego al Nueso Usuario
+        grupo.addToUsuarios(usuarioInstance).save(flush:true)
 
         request.withFormat {
             form multipartForm {
@@ -100,6 +85,8 @@ class UsuarioController {
             }
             '*' { respond usuarioInstance, [status: CREATED] }
         }
+        
+
     }
 
     def edit(Usuario usuarioInstance) {
