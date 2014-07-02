@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="${params.layout}"/>
+        <meta name="layout" content="administrador"/>
         <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />	        
     </head>
     <body>
@@ -46,14 +46,14 @@
                     <p>No hay monedas!</p>
                 </g:else>
                 <!-- Falta agregar el codigo para agregar monedas al usuario -->
-                <g:select name="monedas" from="${metodo}" noSelection="['':'-Elige una moneda-']"/>
+                <!-- <g:select name="monedas" from="${metodo}" noSelection="['':'-Elige una moneda-']"/> -->
             </div>
             <div class="col-md-6">
-                <g:if test="${usuarioInstance?.registros}">
+            <!--    <g:if test="${usuarioInstance?.registros}">
                     <g:each in="${usuarioInstance.registros}" var="r">
                         <g:link controller="registro" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link>
                     </g:each>
-		</g:if>
+		</g:if> -->
             </div>
         </div>  
 	<g:form url="[resource:usuarioInstance, action:'delete']" method="DELETE">

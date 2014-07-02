@@ -28,6 +28,6 @@ class MonedasService
     
     def getMonedas(String[] siglas)
     {        
-        return this.monedas.intersect(siglas)        
+        return this.monedas.minus(siglas)        
     }   
 }

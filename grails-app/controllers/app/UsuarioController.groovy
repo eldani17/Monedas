@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def layout="usuario"
+    def static layout="usuario"
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -69,8 +69,11 @@ class UsuarioController {
     {
         def model=[:]
         model[user]=usuarioInstance
-        MonedasService.
-        respond usuarioInstance
+        def mu=[]
+        mu << usuarioInstance.monedas.getAll().each {it.getSiglas}
+        m=MonedasService.getMonedas()
+        model[money]=m
+        respond model
     }
 
     def create() {
