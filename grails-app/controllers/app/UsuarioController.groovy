@@ -49,9 +49,9 @@ class UsuarioController {
        }
     
     def logout() {
-                    if (session.user){
+        if (session.user){
             session.user = null
-            render(view:'login')
+            redirect(controller:'Usuario', action: 'login')
         }
     }
                 
