@@ -6,7 +6,8 @@ import grails.transaction.Transactional
 class UsuarioController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    def static layout="usuario"
+    //def static layout="usuario"
+    def static layout=null
     
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -17,14 +18,13 @@ class UsuarioController {
     def login(){
       //  def email= Usuario.findByEmail(params.email)   
       //  def password= Usuario.findByPassword(params.password)   
-         def u=Usuario.findWhere(email:params.email)
+         
         //Si no existe el usuario
-        if(!u)
+        
+        if(params.email)
+       
         {
-            redirect(uri:'/')
-        }
-        else
-        {
+            def u=Usuario.findWhere(email:params.email)
             if (u.password==params.password)
             {
                 //Busco en grupos si es administrador
@@ -33,11 +33,7 @@ class UsuarioController {
                 redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
                 
             }
-            else
-            {
-                //debo enviar mensaje diciendo que se equivoco en la contraseña
-                redirect(uri:'/')
-            }           
+                     
         }        
        }
     
