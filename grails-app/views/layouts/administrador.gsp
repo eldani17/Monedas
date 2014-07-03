@@ -16,7 +16,17 @@
       <div class="col-md-12">Header</div>
       </div>
       <div class="row">
-        <div class="col-md-3">Menu</div>
+        <div class="col-md-3">Menu
+        
+            <div class="nav" role="navigation">
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/')}"> <g:message code="default.home.label"/></a></li>
+				<li><g:link class="list" action="index"><g:message code="Listar Usuarios" args="[entityName]" /></g:link></li>
+				<li><g:link class="create" action="create"><g:message code="Crear Nuevo Usuario" args="[entityName]" /></g:link></li>
+			</ul>
+        </div> 
+        
+        </div>
         <div class="col-md-9"><g:layoutBody/></div>
       </div>
       <div class="row">

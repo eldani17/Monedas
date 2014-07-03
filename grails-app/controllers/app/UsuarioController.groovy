@@ -17,7 +17,7 @@ class UsuarioController {
     def login(){
       //  def email= Usuario.findByEmail(params.email)   
       //  def password= Usuario.findByPassword(params.password)   
-         def u=Usuario.findWhere(email:params.email, password:params.password)
+         def u=Usuario.findWhere(email:params.email)
         //Si no existe el usuario
         if(!u)
         {
@@ -27,35 +27,18 @@ class UsuarioController {
         {
             if (u.password==params.password)
             {
-                
+                //Busco en grupos si es administrador
                 u.grupos.each{if (it.isAdmin){layout="administrador"}}
-                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])
+                //Dependiendo si es administrador o no, elige el layout
+                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
+                
             }
             else
             {
+                //debo enviar mensaje diciendo que se equivoco en la contraseña
                 redirect(uri:'/')
-            }
-                
-        }
-            
-            /*
-            render(view:'administrador')
-            //creeria que debe funcionar asi
-           if(usuario.Grupo.IsAdmin==True)
-           {
-            //Enviar al Layout Administrador
-            // redirect(action: "administrador")
-            render(view:'administrador')
-            flash.message="Tengo Usuario Administrador"
-            //Dani Aca debemos crear el Layout para el Administrador
-            
-            }else{
-                //Chicos deben fijarse donde envio la vista
-                // aca hay q enviar a la vista usuario
-                redirect(controller:"Moneda",action: "show")
-                  // Control para deslogueo
-            }*/
-        
+            }           
+        }        
        }
     
     def logout() {
@@ -78,6 +61,7 @@ class UsuarioController {
 
     def create() {
         respond new Usuario(params)
+        
     }
 
     @Transactional
@@ -91,8 +75,10 @@ class UsuarioController {
             respond usuarioInstance.errors, view:'create'
             return
         }
-
-        usuarioInstance.save flush:true
+        //Le agrego un tipo Publico    
+        def grupo= Grupo.findByNombre("publico")
+        //Agrego al Nueso Usuario
+        grupo.addToUsuarios(usuarioInstance).save(flush:true)
 
         request.withFormat {
             form multipartForm {
@@ -101,6 +87,8 @@ class UsuarioController {
             }
             '*' { respond usuarioInstance, [status: CREATED] }
         }
+        
+
     }
 
     def edit(Usuario usuarioInstance) {
