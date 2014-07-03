@@ -28,9 +28,20 @@ class UsuarioController {
             if (u.password==params.password)
             {
                 //Busco en grupos si es administrador
-                u.grupos.each{if (it.isAdmin){layout="administrador"}}
+                //Seteo Session por email
+                session.user=params.email                
+                //Seteo la sesion por defecto que es usuario comun
+                //- True - Es admin   False- No es Admin
+                session.admin="false"
+                u.grupos.each{
+                    if (it.isAdmin){
+                       layout="administrador"
+                       session.admin="true"
+                    }
+                }
                 //Dependiendo si es administrador o no, elige el layout
                 redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
+                
                 
             }
                      
