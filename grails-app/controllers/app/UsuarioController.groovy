@@ -3,19 +3,20 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class UsuarioController {
-
+class UsuarioController
+{
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-    //def static layout="usuario"
-    def static layout=null
-    
-    def index(Integer max) {
+    def monedasService
+        
+    def index(Integer max)
+    {
         params.max = Math.min(max ?: 10, 100)
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
     }
     
     //De la vista llamo a esta accion, que verifica el logueo
-    def login(){
+    def login()
+    {
       //  def email= Usuario.findByEmail(params.email)   
       //  def password= Usuario.findByPassword(params.password)   
          
@@ -35,21 +36,20 @@ class UsuarioController {
                 session.admin="false"
                 u.grupos.each{
                     if (it.isAdmin){
-                       layout="administrador"
+                       //layout="administrador"
                        session.admin="true"
                     }
                 }
                 //Dependiendo si es administrador o no, elige el layout
-                redirect(controller:"Usuario", action:"show", id: u.id, params: [layout: this.layout])  
-                
-                
-            }
-                     
+                redirect(controller:"Usuario", action:"show", id: u.id)                
+            }                     
         }        
-       }
+    }
     
-    def logout() {
-        if (session.user){
+    def logout()
+    {
+        if (session.user)
+        {
             session.user = null
             redirect(controller:'Usuario', action: 'login')
         }
@@ -58,21 +58,20 @@ class UsuarioController {
     def show(Usuario usuarioInstance) 
     {
         def model=[:]
-        model[user]=usuarioInstance
-        def mu=[]
-        mu << usuarioInstance.monedas.getAll().each {it.getSiglas}
-        m=MonedasService.getMonedas()
-        model[money]=m
+        model['user']=usuarioInstance      
+        def m=monedasService.getMonedas(usuarioInstance)
+        model['money']=m
         respond model
     }
 
-    def create() {
-        respond new Usuario(params)
-        
+    def create() 
+    {
+        respond new Usuario(params)        
     }
 
     @Transactional
-    def save(Usuario usuarioInstance) {
+    def save(Usuario usuarioInstance) 
+    {
         if (usuarioInstance == null) {
             notFound()
             return

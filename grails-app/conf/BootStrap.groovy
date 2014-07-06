@@ -19,7 +19,7 @@ class BootStrap
             )).save()
             new Grupo
             (
-                nombre:'Administradores',
+                nombre:'administrador',
                 isAdmin:true
             ).addToUsuarios(new Usuario
             (

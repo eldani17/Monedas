@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="${params.layout?:'main'}"/>
+        <meta name="layout" content="${session.admin?'administrador':'usuario'}"/>
         <g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />	        
     </head>
     <body>

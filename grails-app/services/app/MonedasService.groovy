@@ -26,8 +26,17 @@ class MonedasService
         this.value[c]
     }
     
-    def getMonedas(String[] siglas)
+    def getMonedas(Usuario user)
     {        
-        return this.monedas.minus(siglas)        
+        def mu=[]
+        def monedas=user.monedas.collect()
+        if (monedas.size() != 0)
+        {            
+            for ( e in monedas )
+            {              
+                mu << e.siglas
+            }
+        }  
+        return this.monedas.minus(mu)        
     }   
 }
