@@ -45,11 +45,12 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="#"><img src="http://sia1.subirimagenes.net/img/2014/07/08/140708015154648518.png"></a>
-          <a class="brand" href="#">System Monedas</a>          
+          <a class="brand" href="#">System Monedas Bienvenido Administrador</a>          
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Usuario: 
-             <g:link controller="Usuario" action="logout"><g:message code="${session.user} Salir" /></g:link></a> 
+             Usuario: 
+             <a><g:message code="${session.user}"/></a>
+            <a><g:link controller="Usuario" action="logout"><g:message code="Salir"/></g:link></a> 
             </p>
             
           </div><!--/.nav-collapse -->
@@ -66,12 +67,10 @@
               <!--<li><a href="${createLink(uri: '/')}"><g:message code="default.home.label" args="[entityName]"/></a></li>-->
               <li><g:link class="list" action="index"><g:message code="&nbsp&nbspListar Usuarios" args="[entityName]"/></g:link></li>
               <li><g:link class="create" action="create"><g:message code="&nbsp&nbspCrear Usuario" args="[entityName]" /></g:link></li>
-              <li><g:link class="edit" action="edit"><g:message code="&nbsp&nbspEditar Usuario" args="[entityName]" /></g:link></li>
+              <!--<li><g:link class="edit" action="edit"><g:message code="&nbsp&nbspEditar Usuario" args="[entityName]" /></g:link></li>-->
               <li class="nav-header">+Grupos</li>
-               <li><g:link controller="Grupo" action="create"><g:message code="&nbsp&nbspCrear Grupo" /></g:link></li>
-               <li><g:link controller="Grupo" action="index"><g:message code="&nbsp&nbspListar Grupo" /></g:link></li>
-              
-              
+              <li><g:link controller="Grupo" action="create"><g:message code="&nbsp&nbspCrear Grupo" /></g:link></li>
+              <li><g:link controller="Grupo" action="index"><g:message code="&nbsp&nbspListar Grupo" /></g:link></li>         
               <li class="nav-header">+Monedas</li>
               <li class="nav-header">+Registros</li>         
             </ul>
