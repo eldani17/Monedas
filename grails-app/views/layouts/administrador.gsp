@@ -12,9 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Le styles -->
-    <!--<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">-->
+    
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}" type="text/css">
     <style type="text/css">
       body {
@@ -50,14 +48,10 @@
           <a class="brand" href="#">System Monedas</a>          
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Usuario: <a href="#" class="navbar-link">
-              <g:link controller="Usuario" action="logut"><g:message code="&nbsp&nbspSalir" /></g:link></a> 
+              Usuario: 
+             <g:link controller="Usuario" action="logout"><g:message code="${session.user} Salir" /></g:link></a> 
             </p>
-            <!--<ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>-->
+            
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -75,15 +69,11 @@
               <li><g:link class="edit" action="edit"><g:message code="&nbsp&nbspEditar Usuario" args="[entityName]" /></g:link></li>
               <li class="nav-header">+Grupos</li>
                <li><g:link controller="Grupo" action="create"><g:message code="&nbsp&nbspCrear Grupo" /></g:link></li>
-               <li><g:link controller="Grupo" action="edit"><g:message code="&nbsp&nbspEditar Grupo" /></g:link></li>
-                <li><g:link controller="Grupo" action="index"><g:message code="&nbsp&nbspListar Grupo" /></g:link></li>
+               <li><g:link controller="Grupo" action="index"><g:message code="&nbsp&nbspListar Grupo" /></g:link></li>
               
               
               <li class="nav-header">+Monedas</li>
-              <li class="nav-header">+Registros</li>
-              <!--<li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>-->
+              <li class="nav-header">+Registros</li>         
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
