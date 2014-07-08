@@ -10,13 +10,13 @@
     <title><g:message code="default.list.label" args="[entityName]" /></title>                
   </head>
   <body class="centrarCuerpo">            
-    <a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+   <!-- <a href="#list-usuario" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
     <div class="nav" role="navigation">
       <ul class="nav nav-pills nav-justified" role="tablist">
         <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
         <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
       </ul>
-    </div>
+    </div>-->
 
     <div id="list-usuario" class="content scaffold-list" role="administrador">
       <h1>Listado de Usuarios </h1>

@@ -26,7 +26,7 @@ class UsuarioController
                 //Seteo Session por email
                 session.user=params.email                
                 //Seteo la sesion por defecto que es usuario comun
-                //- True - Es admin   False- No es Admin
+                //- Administrador - Es admin   Publico- No es Admin
                 session.admin="false"
                 u.grupos.each
                 {

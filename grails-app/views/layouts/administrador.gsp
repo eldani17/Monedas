@@ -50,7 +50,8 @@
           <a class="brand" href="#">System Monedas</a>          
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Usuiaro: <a href="#" class="navbar-link">Username</a>
+              Usuario: <a href="#" class="navbar-link">
+              <g:link controller="Usuario" action="logut"><g:message code="&nbsp&nbspSalir" /></g:link></a> 
             </p>
             <!--<ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -73,6 +74,11 @@
               <li><g:link class="create" action="create"><g:message code="&nbsp&nbspCrear Usuario" args="[entityName]" /></g:link></li>
               <li><g:link class="edit" action="edit"><g:message code="&nbsp&nbspEditar Usuario" args="[entityName]" /></g:link></li>
               <li class="nav-header">+Grupos</li>
+               <li><g:link controller="Grupo" action="create"><g:message code="&nbsp&nbspCrear Grupo" /></g:link></li>
+               <li><g:link controller="Grupo" action="edit"><g:message code="&nbsp&nbspEditar Grupo" /></g:link></li>
+                <li><g:link controller="Grupo" action="index"><g:message code="&nbsp&nbspListar Grupo" /></g:link></li>
+              
+              
               <li class="nav-header">+Monedas</li>
               <li class="nav-header">+Registros</li>
               <!--<li><a href="#">Link</a></li>
