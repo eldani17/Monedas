@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main">
+        <meta name="layout" content="administrador">
         <link rel="stylesheet" type="text/css" href="/css/main.css" />
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 	<g:set var="entityName" value="${message(code: 'usuario.label', default: 'Usuario')}" />

@@ -10,8 +10,6 @@
     <title>Bienvenido a Monedas</title>	
   </head>
   <body>		
-    <div id="page-body" role="main" class="container">     
-    
-    </div>
+    Bienvenidos a Microsoft Money!
   </body>
 </html>

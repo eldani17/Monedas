@@ -2,5 +2,8 @@ package app
 
 class PrincipalController
 {
-    def index() { }
+    def index()
+    { 
+        render(view:'index')
+    }
 }

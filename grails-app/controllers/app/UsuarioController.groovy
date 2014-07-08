@@ -17,13 +17,7 @@ class UsuarioController
     //De la vista llamo a esta accion, que verifica el logueo
     def login()
     {
-      //  def email= Usuario.findByEmail(params.email)   
-      //  def password= Usuario.findByPassword(params.password)   
-         
-        //Si no existe el usuario
-        
         if(params.email)
-       
         {
             def u=Usuario.findWhere(email:params.email)
             if (u.password==params.password)
@@ -34,14 +28,15 @@ class UsuarioController
                 //Seteo la sesion por defecto que es usuario comun
                 //- True - Es admin   False- No es Admin
                 session.admin="false"
-                u.grupos.each{
-                    if (it.isAdmin){
-                       //layout="administrador"
+                u.grupos.each
+                {
+                    if (it.isAdmin)
+                    {                       
                        session.admin="true"
                     }
-                }
+                }                
                 //Dependiendo si es administrador o no, elige el layout
-                redirect(controller:"Usuario", action:"show", id: u.id)                
+                redirect(controller:"Usuario", action:"show")      
             }                     
         }        
     }
@@ -51,17 +46,17 @@ class UsuarioController
         if (session.user)
         {
             session.user = null
-            redirect(controller:'Usuario', action: 'login')
+            redirect(controller:'Principal', action: 'index')
         }
     }
                 
     def show(Usuario usuarioInstance) 
-    {
-        def model=[:]
-        model['user']=usuarioInstance      
-        def m=monedasService.getMonedas(usuarioInstance)
-        model['money']=m
-        respond model
+    {                   
+        def pepito=Usuario.findWhere(email:session.user)            
+        def m=monedasService.getMonedas(pepito)        
+        //def model=['user':pepito, 'monedas':m]
+        //respond model
+        render(view:'show', model:['user':pepito, 'monedas':m])
     }
 
     def create() 
@@ -97,7 +92,8 @@ class UsuarioController
 
     }
 
-    def edit(Usuario usuarioInstance) {
+    def edit(Usuario usuarioInstance)
+    {
         respond usuarioInstance
     }
 
@@ -152,4 +148,4 @@ class UsuarioController
             '*'{ render status: NOT_FOUND }
         }
     }
-            }
+}

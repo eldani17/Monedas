@@ -18,7 +18,7 @@ class MonedasService
         Object result = jsonSlurper.parse(reader);
         Map jsonResult = (Map) result;
         value = (Map) jsonResult.get("rates");  
-        value.each () { k, v -> monedas << v } 
+        value.each () { k, v -> monedas << k } 
     }
     
     def getCurrency(String c)
@@ -28,7 +28,7 @@ class MonedasService
     
     def getMonedas(Usuario user)
     {        
-        def mu=[]
+        def mu=[]           
         def monedas=user.monedas.collect()
         if (monedas.size() != 0)
         {            
@@ -36,7 +36,11 @@ class MonedasService
             {              
                 mu << e.siglas
             }
+            return this.monedas.minus(mu)
         }  
-        return this.monedas.minus(mu)        
+        else
+        {
+            return this.monedas
+        }        
     }   
 }
