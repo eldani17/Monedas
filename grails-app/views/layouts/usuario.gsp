@@ -13,19 +13,20 @@
   </head>
   <body>
     <div class="row">
-      <div class="col-md-12">Header</div>
+      <div class="col-md-12">Header usuario
       </div>
-      <div class="row">
-        <div class="col-md-3">Menu
-        
-        
-        
-        </div>
-        <div class="col-md-9"><g:layoutBody/></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Menu
+
+
+
       </div>
-      <div class="row">
-        <div class="col-md-12">Footer</div>                    
-      </div>
+      <div class="col-md-9"><g:layoutBody/></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">Footer</div>                    
+    </div>
     <r:layoutResources />
   </body>
 </html>
