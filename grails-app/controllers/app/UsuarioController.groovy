@@ -26,21 +26,21 @@ class UsuarioController
             def u=Usuario.findWhere(email:params.email)
             if (u.password==params.password)
             {
-                //Busco en grupos si es administrador
-                //Seteo Session por email
-                session.user=params.email                
-                //Seteo la sesion por defecto que es usuario comun
+                session.user=params.email                                
                 //- Administrador - Es admin   Publico- No es Admin
-                session.admin="false"
+                session.admin="usuario"
                 u.grupos.each
                 {
                     if (it.isAdmin)
                     {                       
-                       session.admin="true"
+                       session.admin="Administrador"
+                      
                     }
-                }                
+                }                                 
                 //Dependiendo si es administrador o no, elige el layout
                 redirect(controller:"Usuario", action:"show")      
+                //render(controller:"Usuario",template:'usuario', action:"show")      
+                
             }                     
         }        
     }
@@ -60,7 +60,7 @@ class UsuarioController
         def m=monedasService.getMonedas(pepito)        
         //def model=['user':pepito, 'monedas':m]
         //respond model
-        render(view:'show', model:['user':pepito, 'monedas':m])
+        render(view:'show',layout:session.adim, model:['user':pepito, 'monedas':m])
     }
 
     def create() 

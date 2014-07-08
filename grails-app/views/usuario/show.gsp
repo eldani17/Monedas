@@ -41,7 +41,7 @@
         <p>No hay monedas!</p>                    
       </g:else>                
       <g:select name="monedas" from="${monedas}" noSelection="['':'-Elige una moneda-']"/>
-      <g:actionSubmit value="Cargar Monedas" controller='Moneda' action="create" />      
+      <g:actionSubmit value="Cargar Monedas" controller='moneda' action="create" onClick="create"/> 
     </div>
     <div class="col-md-6">
       <g:if test="${user?.registros}">
