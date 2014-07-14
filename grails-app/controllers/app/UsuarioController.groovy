@@ -60,7 +60,7 @@ class UsuarioController
         def m=monedasService.getMonedas(pepito)        
         //def model=['user':pepito, 'monedas':m]
         //respond model
-        render(view:'show',layout:session.adim, model:['user':pepito, 'monedas':m])
+        render(view:'show',layout:session.admin, model:['user':pepito, 'monedas':m])
     }
 
     def create() 
