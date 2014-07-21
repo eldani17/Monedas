@@ -28,9 +28,7 @@
               <td>${m.siglas}</td>
               <td>${m.valorActual}</td>
               <td>
-                <!-- Falta arreglar los formularios de edicion y eliminacion 
-<g:form name="editar_moneda" url="[controller:'book',action:'list']"><button type="button" class="btn btn-info btn-xs">Editar</button></g:form>
-<g:form name="eliminar_moneda" url="[controller:'book',action:'list']"><button type="button" class="btn btn-danger btn-xs">Eliminar</button></g:form> -->
+                <g:form name="eliminar_moneda" url="[controller:'book',action:'list']"><button type="button" class="btn btn-danger btn-xs">Eliminar</button></g:form> 
               </td>
             </tr>
           </g:each>
@@ -46,8 +44,7 @@
     <div class="col-md-6">
       <g:if test="${user?.registros}">
         <g:each in="${user.registros}" var="r">
-          <g:link controller="registro" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link>
-          
+          <g:link controller="registro" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link>          
         </g:each>
       </g:if> 
     </div>
