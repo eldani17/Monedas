@@ -15,12 +15,21 @@ class MonedaController
         respond Moneda.list(params), model:[monedaInstanceCount: Moneda.count()]
     }
 
+    def agregarMonedas()
+    {
+        
+    }
     def show(Moneda monedaInstance) {
         respond monedaInstance
     }
 
     def create() {
         respond new Moneda(params)
+    }
+    
+    def AgregarMOneda(Moneda monedaInstance,Usuario usuarioInstance){
+               
+        Usuario.addToMonedas(new Moneda(siglas:'ARS',valorActual:8.20)).save()
     }
 
     @Transactional
