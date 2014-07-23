@@ -17,6 +17,18 @@ class MonedaController
 
     def agregarMonedas()
     {
+        println "Siglas"+params.toString()
+        println "Email: "+session.user
+        def u=Usuario.findWhere(email:session.user)
+        if(u==null){
+        println "ESta en nulo"
+        }
+        else{
+            println "No Esta en nulo"
+        }
+        u.addToMonedas(new Moneda(siglas:params.moneda,valorActual:10.20)).save()
+        flash.message = "Moneda Agregada!"
+        redirect(controller:"Usuario", action:"show")      
         
     }
     def show(Moneda monedaInstance) {
@@ -26,12 +38,12 @@ class MonedaController
     def create() {
         respond new Moneda(params)
     }
-    
+    /*
     def AgregarMOneda(Moneda monedaInstance,Usuario usuarioInstance){
                
         Usuario.addToMonedas(new Moneda(siglas:'ARS',valorActual:8.20)).save()
     }
-
+    */
     @Transactional
     def save(Moneda monedaInstance) {
         if (monedaInstance == null) {
