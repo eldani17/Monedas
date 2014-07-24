@@ -14,8 +14,7 @@ class Usuario
         apellido(blank:false)
         password(blank:false,password:true)
         dni(blank:false, matches: "[/d/d./d/d/d./d/d/d]") //corregir
-        email(blank:false, email:true,unique:true)   
-        //grupo(blank:false,inList:["Publico","Administrador"])
+        email(blank:false, email:true,unique:true)         
     }
     static hasMany=[registros:Registro, monedas:Moneda, grupos:Grupo]
     static belongsTo = Grupo

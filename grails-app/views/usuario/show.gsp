@@ -17,13 +17,16 @@
     <div class="col-md-6">                    
        <table>
          <tr>
-            <td> <g:select  value="Moneda.siglas"  name="Moneda" from="${monedas}"/></td>
-            <td> </td>
+            <g:form controller="Usuario" action="agregar">
+            <td><g:select  optionKey="key" optionValue="key" name="moneda" from="${monedas}"/></td>
+            <td></td>
             <td>
-                <g:link controller="Moneda" action="agregarMonedas"> 
-                   <g:img dir="images" file="add.png"/> Agregar Nuevas Monedas
-                 </g:link>
-            </td>                       
+                <!-- <g:link controller="Moneda" action="agregarMonedas"> 
+                   <g:img dir="images" file="add.png"/>
+                </g:link> -->
+            <input type="submit" value="Agregar Moneda">
+            </td>   
+            </g:form>
          </tr>
         </table>
       
@@ -35,31 +38,25 @@
             <th>Cambio</th>
             <th>Acciones</th>            
           </tr>
-
           <g:each in="${user.monedas}" var="m">
             <tr>
               <td>${m.siglas}</td>
               <td>${m.valorActual}</td>
               <td>
-                <g:link controller="Moneda" action="edit"> 
+                <!-- <g:link controller="Moneda" action="edit"> 
                    <g:img dir="images" file="Modify.png"/>
-                 </g:link>
-                
-                 <g:link controller="Moneda" action="delete"> 
+                 </g:link> -->                
+                 <g:link controller="Moneda" action="delete" id="${m}"> 
                    <g:img dir="images" file="delete.png"/>
-                 </g:link>
-                
+                 </g:link>                
               </td>
             </tr>
           </g:each>
-
         </table>
       </g:if>  
       <g:else>
         <p>No hay monedas!</p>                    
-      </g:else>                
-         
-     
+      </g:else>     
     </div>
     <div class="col-md-6">
       <g:if test="${user?.registros}">

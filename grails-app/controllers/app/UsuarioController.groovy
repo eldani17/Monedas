@@ -53,6 +53,20 @@ class UsuarioController
             redirect(controller:'Principal', action: 'index')
         }
     }
+    
+    def agregar()
+    {
+        if (session.user)
+        {
+            def pepito=Usuario.findWhere(email:session.user)
+            pepito.addToMonedas(new Moneda(siglas:params.moneda, valorActual:monedasService.getCurrency(params.moneda))).save(flush:true)
+            redirect(controller:"Usuario", action:"show")   
+        }
+        else
+        {
+            //redirect to login?
+        }
+    }
                 
     def show(Usuario usuarioInstance) 
     {                   

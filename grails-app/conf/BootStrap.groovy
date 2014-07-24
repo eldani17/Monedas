@@ -2,7 +2,6 @@ import app.Grupo
 import app.Usuario
 import app.Moneda
 
-
 class BootStrap
 {
     def init = { servletContext ->   
