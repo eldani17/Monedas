@@ -22,7 +22,12 @@ class MonedaController
     def create() {
         respond new Moneda(params)
     }
-
+    /*
+    def AgregarMOneda(Moneda monedaInstance,Usuario usuarioInstance){
+               
+        Usuario.addToMonedas(new Moneda(siglas:'ARS',valorActual:8.20)).save()
+    }
+    */
     @Transactional
     def save(Moneda monedaInstance) {
         if (monedaInstance == null) {
