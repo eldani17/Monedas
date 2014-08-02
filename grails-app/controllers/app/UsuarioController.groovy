@@ -37,10 +37,7 @@ class UsuarioController
                       
                     }
                 }                                 
-                //Dependiendo si es administrador o no, elige el layout
-                redirect(controller:"Usuario", action:"show")      
-                //render(controller:"Usuario",template:'usuario', action:"show")      
-                
+                redirect(controller:"Usuario", action:"show")   
             }                     
         }        
     }
